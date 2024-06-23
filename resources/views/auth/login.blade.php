@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title','İletişim')
+@section('title','Giriş Yap')
 
 @section('menu')
     <strong style="color: lightblue;text-align: center">Giriş Yap</strong>
