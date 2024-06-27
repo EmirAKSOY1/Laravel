@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="email" class="form-label">TC:</label>
-                                    <input type="number" id="email" class="form-control" name="tc" value="{{ $user->tc }}" required disabled>
+                                    <input type="number" id="email" class="form-control" name="tc" value="{{ $user->tc }}" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Şifre:</label>
