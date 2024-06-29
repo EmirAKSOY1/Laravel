@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Organisation;
 use App\Http\Controllers\Adduser;
 use App\Http\Controllers\Editusercontroller;
+use App\Http\Controllers\Addnotice;
 
 
 
@@ -32,3 +33,6 @@ Route::post('/add_user', [Adduser::class, 'add_user']);
 Route::get('/edituser', [Editusercontroller::class, 'showEdit'])->name('editUser');
 Route::post('/edituser', [Editusercontroller::class, 'fetch'])->name('fetch_user');
 Route::post('/updateuser', [Editusercontroller::class, 'update'])->name('update_user');
+
+Route::get('/add_notice', [Addnotice::class, 'showNotice'])->name('notice');
+Route::post('/add_notice', [Addnotice::class, 'notice_add']);

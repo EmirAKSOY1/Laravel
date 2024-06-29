@@ -57,17 +57,13 @@
 
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <form>
-                        <div class="mb-3">
-                            <label for="input1" class="form-label">Input 1</label>
-                            <input type="text" class="form-control" id="input1">
+                    <h1>Duyurular</h1>
+                    @foreach($notices as $announcement)
+                        <div>
+                            <h2>{{ $announcement->title }}</h2>
+                            <p>{{ $announcement->content }}</p>
                         </div>
-                        <div class="mb-3">
-                            <label for="input2" class="form-label">Input 2</label>
-                            <input type="text" class="form-control" id="input2">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+                    @endforeach
                 </div>
             </div>
         </div>

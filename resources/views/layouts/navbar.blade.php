@@ -21,7 +21,7 @@
 <body>
 <!-- navbar -->
 <nav class="navbar">
-    <div class="logo_item">
+    <div class="logo_item" style="cursor: pointer" onclick="goToDashboard()">
         <i class="bx bx-menu" id="sidebarOpen"></i>
         <img src="{{asset('tubitak.png')}}" alt=""></i>Universal Test System
     </div>
@@ -58,7 +58,7 @@
                 <span> Expand</span>
                 <i class='bx bx-log-in' ></i>
             </div>
-            <div class="bottom collapse_sidebar">
+            <div class="bottom collapse_sidebar" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <span> Çıkış Yap</span>
                 <i class='bx bx-log-out'></i>
             </div>
@@ -118,6 +118,9 @@
         sidebar.classList.add("close");
     } else {
         sidebar.classList.remove("close");
+    }
+    function goToDashboard() {
+        window.location.href = "{{ route('dashboard') }}";
     }
 </script>
 @yield('icerik')

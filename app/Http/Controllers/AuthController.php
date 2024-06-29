@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\NoticeModel;
 class AuthController extends Controller
 {
     public function showLoginForm()
@@ -25,13 +25,14 @@ class AuthController extends Controller
 
     public function dashboard()
     {
+        $notices=NoticeModel::all();
         $user = Auth::user();
         if ($user->hasRole('aday')) {
-            return view('dashboard.candidate');
+            return view('dashboard.candidate',compact('notices'));
         } elseif ($user->hasRole('test uygulayıcısı')) {
-            return view('dashboard.tester');
-        } elseif ($user->hasRole('sistem yöneticisi')) {
-            return view('dashboard.admin');
+            return view('dashboard.tester',compact('notices'));
+        } elseif ($user->hasRole('sistem yöneticisi',compact('notices'))) {
+            return view('dashboard.admin',compact('notices'));
         } else {
             abort(403);
         }
