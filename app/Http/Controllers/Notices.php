@@ -6,19 +6,30 @@ use App\Models\NoticeModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class Addnotice extends Controller
+class Notices extends Controller
 {
-    public function showNotice()
-    {
-        return view('admin.add_notice');
-    }
     public function index()
     {
-
         $notices=NoticeModel::all();
         return view('admin.notices',compact('notices'));
     }
-    public function notice_add(Request $request){
+    public function create(){
+        return view('admin.add_notice');
+    }
+    public function destroy($id)
+    {
+        $notice = NoticeModel::findOrFail($id);
+        $notice->delete();
+
+        return redirect()->route('notices.index')
+            ->with('success', 'Duyuru başarıyla silindi.');
+    }
+    public function edit($id)
+    {
+        $notices = NoticeModel::findOrFail($id);
+        return view('admin.edit_notice', compact('notices'));
+    }
+    public function update(Request $request, $id){
 
         $request->validate([
             'notice_title' => 'required|string|max:255',
@@ -27,20 +38,28 @@ class Addnotice extends Controller
             'notice_end_date' => 'required|date',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // 2MB maks boyut
         ]);
-        $imageName = null;
+        $notice = NoticeModel::findOrFail($id);
+
         if ($request->hasFile('image')) {
+            if ($notice->image_path) {
+
+                Storage::disk('public')->delete($notice->image_path);
+            }
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('images'), $imageName);
+            $notice->image_path = $imageName;
         }
-        // Veritabanına veri ekleme
-        $notice = new NoticeModel;
+
         $notice->title = $request->notice_title;
         $notice->content = $request->notice_content;
         $notice->start_date = $request->notice_start_date;
         $notice->end_date = $request->notice_end_date;
-        $notice->image_path = $imageName;
+
         $notice->save();
 
-        return redirect()->back()->with('success', 'Data has been saved successfully!');
+        return redirect()->route('notices.index')
+            ->with('success', 'Duyuru başarıyla güncellendi.');
+
     }
+
 }

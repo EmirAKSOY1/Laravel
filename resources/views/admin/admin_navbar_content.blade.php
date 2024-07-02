@@ -94,7 +94,7 @@
         </a>
     </li>
     <li class="item">
-        <a href="{{ route('notice') }}" class="nav_link">
+        <a href="{{ route('notices.index') }}" class="nav_link">
               <span class="navlink_icon">
                 <i class="bx bx-news"></i>
               </span>

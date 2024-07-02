@@ -17,7 +17,12 @@
                 @foreach($notices as $announcement)
                     <div>
                         <h2 style="color:#4070f4">{{ $announcement->title }}</h2>
-                        <p>{{ $announcement->content }}</p>
+                        <p>{!!   $announcement->content !!}</p>
+                        @if($announcement->image_path)
+                        <img style="width: 300px;height: 200px;" src="{{ asset('images/'.$announcement->image_path) }}" alt="{{ $announcement->title }}">
+                        @else
+                            <img src="https://placehold.co/300x200" alt="Placeholder Resmi">
+                        @endif
                     </div>
                 @endforeach
             </div>

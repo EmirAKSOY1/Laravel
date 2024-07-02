@@ -9,5 +9,5 @@ class NoticeModel extends Model
 {
     use HasFactory;
     protected $table = 'notices'; // Doğru tablo adı
-    protected $fillable = ['title', 'content'];
+    protected $fillable = ['title', 'content','start_date','end_date','image_path'];
 }

@@ -25,7 +25,10 @@ class AuthController extends Controller
 
     public function dashboard()
     {
-        $notices=NoticeModel::all();
+        $today = date('Y-m-d');
+        $notices=NoticeModel::where('start_date', '<=', $today)
+            ->where('end_date', '>=', $today)
+            ->get();;
         $user = Auth::user();
         if ($user->hasRole('aday')) {
             return view('dashboard.candidate',compact('notices'));
