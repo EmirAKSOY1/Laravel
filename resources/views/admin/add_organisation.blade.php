@@ -20,13 +20,20 @@
                         </div>
                     @endif
                     <h2 style="color:#4070f4">Kurum Ekle</h2>
-                    <form action="{{ route('organisation') }}" method="POST">
+                    <form action="{{ route('organisation.store') }}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label for="input1" class="form-label">Kurum İsmi</label>
                             <input type="text" class="form-control" id="organisation_name" name="organisation_name">
                         </div>
-
+                        <div class="mb-3">
+                            <label for="level" class="form-label">Düzey</label>
+                            <select class="form-control" id="level" name="level_id">
+                                @foreach($levels as $level)
+                                    <option value="{{ $level->id }}">{{ $level->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <button type="submit" class="btn btn-primary">Kurum Ekle</button>
                     </form>
                 </div>

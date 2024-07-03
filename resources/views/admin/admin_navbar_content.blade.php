@@ -1,24 +1,6 @@
 <ul class="menu_items">
     <div class="menu_title menu_dahsboard"></div>
-    <!-- duplicate these li tag if you want to add or remove navlink only -->
-    <!-- Start -->
-    <li class="item">
-        <a href="#" class="nav_link">
-              <span class="navlink_icon">
-                <i class="bx bx-loader-circle"></i>
-              </span>
-            <span class="navlink">Çok Aşamalı</span>
-        </a>
-    </li>
-    <!-- End -->
-    <li class="item">
-        <a href="#" class="nav_link">
-              <span class="navlink_icon">
-                <i class="bx bx-sitemap"></i>
-              </span>
-            <span class="navlink">BOBUT</span>
-        </a>
-    </li>
+
 </ul>
 <ul class="menu_items">
     <div class="menu_title menu_editor"></div>
@@ -70,25 +52,25 @@
         </a>
     </li>
     <li class="item">
-        <a href="#" class="nav_link">
+        <a href="{{ route('changepassword') }}" class="nav_link">
               <span class="navlink_icon">
-                <i class="bx bx-layer"></i>
+                <i class='bx bx-group'></i>
               </span>
             <span class="navlink">Grup Tanımlama</span>
         </a>
     </li>
     <li class="item">
-        <a href="{{ route('organisation') }}" class="nav_link">
+        <a href="{{ route('organisation.index') }}" class="nav_link">
               <span class="navlink_icon">
-                <i class="bx bx-layer"></i>
+                <i class='bx bxs-school'></i>
               </span>
-            <span class="navlink">Okul Tanımlama</span>
+            <span class="navlink">Kurum Tanımlama</span>
         </a>
     </li>
     <li class="item">
         <a href="{{ route('add_user') }}" class="nav_link">
               <span class="navlink_icon">
-                <i class="bx bx-layer"></i>
+                <i class='bx bx-user-plus'></i>
               </span>
             <span class="navlink">Kullanıcı Tanımlama</span>
         </a>

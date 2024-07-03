@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\NoticeModel;
@@ -10,6 +10,29 @@ class AuthController extends Controller
     public function showLoginForm()
     {
         return view('auth.login');
+    }
+    public function changepasswordshow()
+    {
+        return view('auth.changepassword');
+    }
+    public function changepassword(Request $request){
+        $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+        $user = Auth::user();
+
+        // Kullanıcının mevcut şifresini doğrula
+        if (!Hash::check($request->current_password, $user->password)) {
+            return redirect()->back()->withErrors(['current_password' => 'Mevcut şifre yanlış.']);
+        }
+
+        // Yeni şifreyi güncelle
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('changepasswordshow')->with('success', 'Şifreniz başarıyla güncellendi.');
     }
 
     public function login(Request $request)

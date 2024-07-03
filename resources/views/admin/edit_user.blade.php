@@ -23,15 +23,7 @@
                             <p style="color: red;">{{ session('error') }}</p>
                         @endif
                     <h2 style="color:#4070f4">Aday Düzenle</h2>
-                    <form action="{{ route('fetch_user') }}" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="input1" class="form-label">Kullanıcı TC</label>
-                            <input type="text" class="form-control" id="organisation_name" name="tc">
-                        </div>
 
-                        <button type="submit" class="btn btn-primary">Kullanıcı Getir</button>
-                    </form>
                         @if(isset($user))
                             <br>
                             <form action="{{ route('update_user') }}" method="POST">

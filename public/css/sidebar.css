@@ -129,6 +129,9 @@ a{
 .menu_application::before {
     content: "Başvuru İşlemleri";
 }
+.menu_profile::before {
+    content: "Profil İşlemleri";
+}
 .menu_test::before {
     content: "Test İşlemleri";
 }

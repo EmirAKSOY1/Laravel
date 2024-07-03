@@ -29,7 +29,9 @@
     </div>
 
     <div class="navbar_content">
+
         <span>@yield('role')</span>
+
         <i class='bx bx-user' id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false" >
             <div class="dropdown">
                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
@@ -44,7 +46,6 @@
                     </form>
                 </ul>
             </div></i>
-
         <i class='bx bx-sun' id="darkLight"></i>
         <i class='bx bx-bell' ></i>
     </div>
@@ -53,13 +54,36 @@
 <nav class="sidebar">
     <div class="menu_content">
         @yield('sidebar_permission')
+        <ul class="menu_items">
+        <div class="menu_title menu_profile"></div>
+        <!-- duplicate these li tag if you want to add or remove navlink only -->
+        <!-- Start -->
+            <li class="item">
+                <a href="{{route('contact.index')}}" class="nav_link">
+              <span class="navlink_icon">
+                <i class='bx bxs-id-card'></i>
+              </span>
+                    <span class="navlink">İletişim Bilgileri</span>
+                </a>
+            </li>
+        <li class="item">
+            <a href="{{ route('changepasswordshow') }}" class="nav_link">
+              <span class="navlink_icon">
+                <i class='bx bx-user-circle'></i>
+              </span>
+                <span class="navlink">Şifre değiştir</span>
+            </a>
+        </li>
 
+        </ul>
         <!-- Sidebar Open / Close -->
         <div class="bottom_content">
             <div class="bottom expand_sidebar">
                 <span> Expand</span>
                 <i class='bx bx-log-in' ></i>
             </div>
+
+
             <div class="bottom collapse_sidebar" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <span> Çıkış Yap</span>
                 <i class='bx bx-log-out'></i>

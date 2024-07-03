@@ -57,12 +57,6 @@
 
                             <br>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" value="3" id="flexRadioDefault1" checked>
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Aday
-                            </label>
-                        </div>
-                        <div class="form-check">
                             <input class="form-check-input" type="radio" name="flexRadioDefault" value="2" id="flexRadioDefault2" >
                             <label class="form-check-label" for="flexRadioDefault2">
                                 Test Yöneticisi
@@ -71,7 +65,7 @@
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="flexRadioDefault" value="1" id="flexRadioDefault3" >
                             <label class="form-check-label" for="flexRadioDefault3">
-                                Admin
+                                Sistem Yöneticisi
                             </label>
                         </div>
                         <br>
