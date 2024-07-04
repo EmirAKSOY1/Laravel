@@ -31,8 +31,7 @@ Route::get('/dashboard', [AuthController::class, 'dashboard'])->middleware('auth
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
 
-Route::get('/add_user', [Adduser::class, 'showAdd'])->name('add_user');
-Route::post('/add_user', [Adduser::class, 'add_user']);
+
 
 Route::get('/edituser', [Editusercontroller::class, 'showEdit'])->name('editUser');
 Route::post('/edituser', [Editusercontroller::class, 'fetch'])->name('fetch_user');
@@ -44,10 +43,15 @@ Route::post('/add_notice', [Addnotice::class, 'notice_add']);
 
 
 Route::resource('notices', Notices::class);
-
 Route::resource('contact',User::class);
 Route::resource('candidate',Candidate::class);
+Route::resource('organisation',Organisation::class);
+Route::resource('add_user',Adduser::class);
+
+//Route::get('/add_user', [Adduser::class, 'showAdd'])->name('add_user');
+//Route::post('/add_user', [Adduser::class, 'add_user']);
 
 Route::get('/add_organisation', [Organisation::class, 'showOrganisation'])->name('organisation');
 Route::post('/add_organisation', [Organisation::class, 'add']);
-Route::resource('organisation',Organisation::class);
+
+

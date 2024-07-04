@@ -60,7 +60,7 @@
         </a>
     </li>
     <li class="item">
-        <a href="{{ route('add_user') }}" class="nav_link">
+        <a href="{{ route('add_user.index') }}" class="nav_link">
               <span class="navlink_icon">
                 <i class='bx bx-user-plus'></i>
               </span>

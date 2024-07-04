@@ -38,7 +38,6 @@
                                 @foreach($levelModel as $level)
                                     <option value="{{ $level->id }}" {{ $levelll == $level->id ? 'selected' : '' }}>{{ $level->name }}</option>
                                 @endforeach
-
                             </select>
                         </div>
                         <br>
