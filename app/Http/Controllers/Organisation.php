@@ -58,7 +58,7 @@ class Organisation extends Controller
         $organisation = OrganisationModel::findOrFail($id);
         $levelModel = Level::all();
 
-        $currentLevel = $organisation->levels; // veya $organisation->level->name
+        $currentLevel = $organisation->levels;
         foreach ($currentLevel as $level) {
             $levelll=$level->id;
 

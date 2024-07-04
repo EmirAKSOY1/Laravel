@@ -2,10 +2,7 @@
 
 @section('title','Giriş Yap')
 
-@section('menu')
-    <strong style="color: lightblue;text-align: center">Giriş Yap</strong>
-@endsection
-@section('right-panel')
+@section('icerik')
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -15,7 +12,8 @@
             </ul>
         </div>
     @endif
-    <form action="{{route('login')}} "method="post">
+    <br>
+    <form action="{{route('login')}}"method="post">
         @csrf
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email address</label>

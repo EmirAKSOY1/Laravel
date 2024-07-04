@@ -25,6 +25,7 @@ class User extends Authenticatable
         'email',
         'tc',
         'password',
+        'is_active',
     ];
 
     /**
@@ -53,5 +54,9 @@ class User extends Authenticatable
     public function hasRole($roleName)
     {
         return $this->roles()->where('name', $roleName)->exists();
+    }
+    public function aday()
+    {
+        return $this->hasOne(CandidateModel::class);
     }
 }

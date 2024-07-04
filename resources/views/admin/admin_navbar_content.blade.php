@@ -16,7 +16,7 @@
     </li>
     <!-- End -->
     <li class="item">
-        <a href="{{ route('editUser') }}" class="nav_link">
+        <a href="{{ route('candidate.index') }}" class="nav_link">
               <span class="navlink_icon">
                 <i class="bx bx-user"></i>
               </span>
@@ -27,14 +27,6 @@
 </ul>
 <ul class="menu_items">
     <div class="menu_title menu_setting"></div>
-    <li class="item">
-        <a href="#" class="nav_link">
-              <span class="navlink_icon">
-                <i class="bx bx-flag"></i>
-              </span>
-            <span class="navlink">Sınıf Düzeyi Ekle</span>
-        </a>
-    </li>
     <li class="item">
         <a href="#" class="nav_link">
               <span class="navlink_icon">

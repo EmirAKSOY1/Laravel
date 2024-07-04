@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\NoticeModel;
+use App\Models\User;
 class AuthController extends Controller
 {
     public function showLoginForm()
@@ -39,8 +40,17 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('/dashboard');
+
+        $user = User::where('email', $credentials['email'])->first();
+
+        if ($user) {
+            if ($user->is_active == 0) {
+                return redirect()->back()->withErrors(['email' => 'Kaydınız pasif hale getirilmiştir.']);
+            }
+
+            if (Auth::attempt($credentials)) {
+                return redirect()->intended('/dashboard');
+            }
         }
 
         return redirect()->back()->withErrors(['email' => 'Giriş bilgileri hatalı.']);

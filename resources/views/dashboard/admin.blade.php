@@ -12,19 +12,31 @@
 
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <h1>Duyurular</h1>
+                <h1 style="color:#4070f4">Duyurular</h1>
                 <hr>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
                 @foreach($notices as $announcement)
-                    <div>
-                        <h2 style="color:#4070f4">{{ $announcement->title }}</h2>
-                        <p>{!!   $announcement->content !!}</p>
-                        @if($announcement->image_path)
-                        <img style="width: 300px;height: 200px;" src="{{ asset('images/'.$announcement->image_path) }}" alt="{{ $announcement->title }}">
-                        @else
-                            <img src="https://placehold.co/300x200" alt="Placeholder Resmi">
-                        @endif
+
+                    <div class="col">
+                        <div class="card h-100">
+                            @if($announcement->image_path)
+                                <img  class="card-img-top" src="{{ asset('images/'.$announcement->image_path) }}" alt="{{ $announcement->title }}">
+                            @else
+                                <img src="https://placehold.co/300x200" class="card-img-top"class="card-img-top" alt="Placeholder Resmi">
+                            @endif
+
+                            <div class="card-body">
+                                <h5 class="card-title" style="color:#4070f4">{{ $announcement->title }}</h5>
+                                <p class="card-text">{!!   $announcement->content !!}</p>
+                            </div>
+                                <div class="card-footer">
+                                    <small class="text-body-secondary">{{ $announcement->created_at }}</small>
+                                </div>
+                        </div>
                     </div>
+
                 @endforeach
+            </div>
             </div>
         </div>
     </div>

@@ -8,6 +8,7 @@ use App\Http\Controllers\Editusercontroller;
 use App\Http\Controllers\Addnotice;
 use App\Http\Controllers\Notices;
 use App\Http\Controllers\User;
+use App\Http\Controllers\Candidate;
 
 
 
@@ -17,7 +18,7 @@ Route::get('/',function(){
 Route::get('/about',function(){
     return view('about');
 });
-Route::get('/contact',function(){
+Route::get('/contact_page',function(){
     return view('contact');
 });
 
@@ -45,6 +46,7 @@ Route::post('/add_notice', [Addnotice::class, 'notice_add']);
 Route::resource('notices', Notices::class);
 
 Route::resource('contact',User::class);
+Route::resource('candidate',Candidate::class);
 
 Route::get('/add_organisation', [Organisation::class, 'showOrganisation'])->name('organisation');
 Route::post('/add_organisation', [Organisation::class, 'add']);

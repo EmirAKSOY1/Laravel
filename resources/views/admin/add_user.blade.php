@@ -54,6 +54,7 @@
                                 <input type="text" id="password" class="form-control" placeholder="Şifre" name="password">
                                 <button type="button" class="btn btn-secondary" onclick="generatePassword()">Rastgele Şifre Üret</button>
                             </div>
+                        </div>
 
                             <br>
                         <div class="form-check">

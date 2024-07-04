@@ -24,7 +24,7 @@
                             </div>
                         @endif
                         <h1>Duyurular</h1>
-
+                        <hr>
                         <button type="button" class="btn btn-success"  onclick="window.location='{{ route('notices.create') }}'">Yeni Duyuru Ekle</button>
                         <table class="table table-striped">
                             <thead>
