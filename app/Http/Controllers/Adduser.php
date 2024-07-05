@@ -50,7 +50,10 @@ class Adduser extends Controller
         return redirect()->route('add_user.index')
             ->with('delete', 'Aday başarıyla silindi.');
     }
-    public function add_user(Request $request){
+    public function create(){
+        return view('admin.add_user');
+    }
+    public function store(Request $request){
         // Veritabanına veri ekleme
         $user = new User();
         $user->name = $request->input('user_name');

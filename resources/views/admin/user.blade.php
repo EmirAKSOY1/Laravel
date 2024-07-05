@@ -72,7 +72,7 @@
                     </form>
 
                     <br>
-                    <button type="button" class="btn btn-success"  onclick="window.location='{{ route('candidate.create') }}'">Yeni Kullanıcı Ekle</button>
+                    <button type="button" class="btn btn-success"  onclick="window.location='{{ route('add_user.create') }}'">Yeni Kullanıcı Ekle</button>
                     @if(isset($message))
                         <p>{{ $message }}</p>
                     @else

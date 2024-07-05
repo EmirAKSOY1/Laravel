@@ -20,7 +20,7 @@
                         </div>
                     @endif
                     <h2 style="color:#4070f4">Kullanıcı Ekle</h2>
-                    <form action="" method="POST">
+                    <form action="{{ route('add_user.store') }}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label for="input1" class="form-label">Kullanıcı İsmi</label>
