@@ -1,9 +1,6 @@
-
 @auth
     @extends('layouts.navbar')
     @section('title',"Kullanıcı")
-    @section('username',auth()->user()->username)
-    @section('role',auth()->user()->roles->first()->name)
     @section('sidebar_permission')
         @include('admin.admin_navbar_content')
     @endsection
@@ -93,7 +90,7 @@
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->surname}}</td>
                                     <td>
-                                        <a  class="btn btn-primary" href="{{ route('candidate.edit',$user->id) }}">Düzenle</a>
+                                        <a  class="btn btn-primary" href="{{ route('add_user.edit',$user->id) }}">Düzenle</a>
                                         <form action="{{ route('add_user.destroy',$user->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
@@ -110,18 +107,6 @@
                 </div>
             </div>
         </div>
-        <script>
-
-            // Sayfa yüklendikten sonra 3 saniye bekle ve alert'i gizle
-            setTimeout(function() {
-                var alertElement = document.getElementById('successAlert');
-                if (alertElement) {
-                    alertElement.classList.remove('show');
-                    alertElement.classList.add('fade');
-                }
-            }, 2000); // 3000 milisaniye = 3 saniye
-        </script>
-
     @endsection
 @else
     <script>

@@ -1,6 +1,5 @@
 <ul class="menu_items">
     <div class="menu_title menu_dahsboard"></div>
-
 </ul>
 <ul class="menu_items">
     <div class="menu_title menu_editor"></div>

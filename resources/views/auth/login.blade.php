@@ -1,7 +1,5 @@
 @extends('layouts.main')
-
 @section('title','Giriş Yap')
-
 @section('icerik')
     @if ($errors->any())
         <div class="alert alert-danger">

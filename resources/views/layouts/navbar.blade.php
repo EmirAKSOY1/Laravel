@@ -10,15 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-
     <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
     <title>@yield('title')</title>
-    <style>
-        .content {
-
-            padding: 20px;
-        }
-    </style>
 </head>
 <body>
 <!-- navbar -->
@@ -27,25 +20,9 @@
         <i class="bx bx-menu" id="sidebarOpen"></i>
         <img src="{{asset('tubitak.png')}}" alt=""></i>Universal Test System
     </div>
-
     <div class="navbar_content">
-
-        <span>@yield('role')</span>
-
-        <i class='bx bx-user' id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false" >
-            <div class="dropdown">
-                <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                    <li><a class="dropdown-item" href="#">@yield('username')</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Profil İşlemleri</a></li>
-                    <li>
-                        <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Çıkış Yap</a>
-                    </li>
-                    <form id="logout-form" action="/logout" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </ul>
-            </div></i>
+        <span>{{auth()->user()->username}}</span>
+        <span>({{auth()->user()->roles->first()->name}})</span>
         <i class='bx bx-sun' id="darkLight"></i>
         <i class='bx bx-bell' ></i>
     </div>
@@ -82,8 +59,6 @@
                 <span> Expand</span>
                 <i class='bx bx-log-in' ></i>
             </div>
-
-
             <div class="bottom collapse_sidebar" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <span> Çıkış Yap</span>
                 <i class='bx bx-log-out'></i>
@@ -92,6 +67,14 @@
     </div>
 </nav>
 <script>
+    // Sayfa yüklendikten sonra 3 saniye bekle ve alert'i gizle
+    setTimeout(function() {
+        var alertElement = document.getElementById('successAlert');
+        if (alertElement) {
+            alertElement.classList.remove('show');
+            alertElement.classList.add('fade');
+        }
+    }, 2000); // 3000 milisaniye = 3 saniye
     const body = document.querySelector("body");
     const darkLight = document.querySelector("#darkLight");
     const sidebar = document.querySelector(".sidebar");

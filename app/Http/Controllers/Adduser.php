@@ -72,4 +72,36 @@ class Adduser extends Controller
         $user_role->save();
         return redirect()->back()->with('success', 'Data has been saved successfully!');
     }
+    public function edit($id){
+        $users=User::findOrFail($id);
+        return view('admin.edit_user', compact('users'));
+    }
+    public function update(Request $request , $id){
+
+        $user=User::findOrFail($id);
+        $user_rol=UserRol::where('user_id', $id)->first();
+
+        $validatedData = $request->validate([
+            'name' => 'required|string',
+            'surname' => 'required|string',
+            'username' => 'required|string',
+            'tc' => 'required|string',
+            'email' => 'required|email',
+            'active' => 'required|in:0,1',
+
+        ]);
+
+        $user->update([
+            'name' => $request->input('name'),
+            'surname' => $request->input('surname'),
+            'username' => $request->input('username'),
+            'tc' => $request->input('tc'),
+            'email' => $request->input('email'),
+            'is_active' => $request->input('active'),
+        ]);
+        $user_rol->update([
+            'role_id' =>$request->input('role'),
+        ]);
+        return redirect()->route('add_user.index')->with('success_update', 'Aday başarıyla Güncellendi.');
+    }
 }

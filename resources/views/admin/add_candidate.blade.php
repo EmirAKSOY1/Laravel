@@ -1,9 +1,6 @@
-
 @auth
     @extends('layouts.navbar')
     @section('title',"Aday Ekle")
-    @section('username',auth()->user()->username)
-    @section('role',auth()->user()->roles->first()->name)
     @section('sidebar_permission')
         @include('admin.admin_navbar_content')
     @endsection
@@ -83,14 +80,6 @@
             </div>
         </div>
         <script>
-            // Sayfa yüklendikten sonra 3 saniye bekle ve alert'i gizle
-            setTimeout(function() {
-                var alertElement = document.getElementById('successAlert');
-                if (alertElement) {
-                    alertElement.classList.remove('show');
-                    alertElement.classList.add('fade');
-                }
-            }, 2000); // 3000 milisaniye = 3 saniye
             function generatePassword() {
                 var length = 8;
                 var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

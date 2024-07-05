@@ -66,19 +66,13 @@ class Candidate extends Controller
     }
     public function edit($id)
     {
-       /* $candidates = CandidateModel::findOrFail($id);
-        //$candidates = CandidateModel::with('OrganisationLevel.level', 'OrganisationLevel.organisation')->find($id);
-        $level=OrganisationLevel::findOrFail($id)->first();
-        $level=$level->organisation;*/
         $candidates = CandidateModel::with('organisationLevel.organisation')->find($id);
         $organisationLevels = OrganisationLevel::with('organisation', 'level')->get();
-        //dd($candidates);
         return view('admin.edit_candidate', compact('candidates','organisationLevels'));
     }
     public function update(Request $request, $id)
     {
         $candidate = CandidateModel::findOrFail($id);
-
         $validatedData = $request->validate([
             'name' => 'required|string',
             'surname' => 'required|string',
@@ -106,7 +100,7 @@ class Candidate extends Controller
         ]);
 
         $candidate->user->update([
-            'is_active' => $request->input('active'),
+                'is_active' => $request->input('active'),
         ]);
 
 
