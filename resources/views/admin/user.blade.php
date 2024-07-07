@@ -79,7 +79,9 @@
                                 <th>Rol</th>
                                 <th>Adı</th>
                                 <th>Soyadı</th>
-                                <th>E-Posta</th>
+                                <th>Kurum</th>
+                                <th>Seviye</th>
+                                <th>İşlemler</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -89,6 +91,9 @@
                                     <td>{{$user->roles->first()->name}}</td>
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->surname}}</td>
+                                    <td>{{$user->roleUser->organisationLevel->organisation->organisation_name }}</td>
+                                    <td>{{$user->roleUser->organisationLevel->level->name }}</td>
+
                                     <td>
                                         <a  class="btn btn-primary" href="{{ route('add_user.edit',$user->id) }}">Düzenle</a>
                                         <form action="{{ route('add_user.destroy',$user->id) }}" method="POST" style="display:inline;">

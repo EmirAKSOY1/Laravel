@@ -57,7 +57,7 @@
                                 <select class="form-control" id="organisation_level_id" name="organisation_level_id">
                                     @foreach($organisationLevels as $orgLevel)
                                         <option value="{{ $orgLevel->id }}"
-                                                @if($orgLevel->id == $candidates->organisation_level_id)
+                                                @if($orgLevel->id == $candidates->user->roleUser->organisationLevel->id)
                                                     selected
                                             @endif
                                         >

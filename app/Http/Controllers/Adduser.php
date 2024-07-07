@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CandidateModel;
 use App\Models\NoticeModel;
+use App\Models\OrganisationLevel;
 use App\Models\UserRol;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ class Adduser extends Controller
 {
     public function index(Request $request)
     {
-        $query = User::query()->with('roles');
+        $query = User::query()->with('roleUser.organisationLevel.organisation');
         //dd($users);
 
         if ($request->filled('name')) {
@@ -51,7 +52,8 @@ class Adduser extends Controller
             ->with('delete', 'Aday başarıyla silindi.');
     }
     public function create(){
-        return view('admin.add_user');
+        $organisationLevels = OrganisationLevel::with('organisation', 'level')->get();
+        return view('admin.add_user',compact('organisationLevels'));
     }
     public function store(Request $request){
         // Veritabanına veri ekleme
@@ -69,12 +71,15 @@ class Adduser extends Controller
         $user_role = new UserRol();
         $user_role->user_id = $user_id;
         $user_role->role_id =$request->input('flexRadioDefault');
+        $user_role->organasation_level_id =$request->input('organisation_level_id');
+
         $user_role->save();
         return redirect()->back()->with('success', 'Data has been saved successfully!');
     }
     public function edit($id){
         $users=User::findOrFail($id);
-        return view('admin.edit_user', compact('users'));
+        $organisationLevels = OrganisationLevel::with('organisation', 'level')->get();
+        return view('admin.edit_user', compact('users','organisationLevels'));
     }
     public function update(Request $request , $id){
 
@@ -101,7 +106,9 @@ class Adduser extends Controller
         ]);
         $user_rol->update([
             'role_id' =>$request->input('role'),
+            'organasation_level_id' =>$request->input('organisation_level_id'),
         ]);
+
         return redirect()->route('add_user.index')->with('success_update', 'Aday başarıyla Güncellendi.');
     }
 }

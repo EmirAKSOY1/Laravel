@@ -20,9 +20,9 @@
                     <div class="col">
                         <div class="card h-100">
                             @if($announcement->image_path)
-                                <img  class="card-img-top" src="{{ asset('images/'.$announcement->image_path) }}" alt="{{ $announcement->title }}">
+                                <img  class="card-img-top" style="height:200px;width:220px" src="{{ asset('images/'.$announcement->image_path) }}" alt="{{ $announcement->title }}">
                             @else
-                                <img src="https://placehold.co/300x200" class="card-img-top"class="card-img-top" alt="Placeholder Resmi">
+                                <img src="https://placehold.co/280x250" style="height:200px;width:225px"  class="card-img-top"class="card-img-top" alt="Placeholder Resmi">
                             @endif
 
                             <div class="card-body">

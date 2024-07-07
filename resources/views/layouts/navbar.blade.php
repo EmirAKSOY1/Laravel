@@ -59,6 +59,9 @@
                 <span> Expand</span>
                 <i class='bx bx-log-in' ></i>
             </div>
+            <form id="logout-form" action="/logout" method="POST" style="display: none;">
+                @csrf
+            </form>
             <div class="bottom collapse_sidebar" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <span> Çıkış Yap</span>
                 <i class='bx bx-log-out'></i>

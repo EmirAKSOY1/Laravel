@@ -49,6 +49,20 @@
                                     <label for="email" class="form-label">TC:</label>
                                     <input type="number" id="email" class="form-control" name="tc" value="{{ $users->tc }}" required>
                                 </div>
+                                <div class="form-group">
+                                    <label for="organisation_level_id">Kurum</label>
+                                    <select class="form-control" id="organisation_level_id" name="organisation_level_id">
+                                        @foreach($organisationLevels as $orgLevel)
+                                            <option value="{{ $orgLevel->id }}"
+                                                    @if($orgLevel->id == $users->roleUser->organisationLevel->id)
+                                                        selected
+                                                @endif
+                                            >
+                                                {{ $orgLevel->organisation->organisation_name }} - {{ $orgLevel->level->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 <div class="mb-3">
                                     <label>Durum:</label><br>
                                     <input type="radio" id="active_inactive" name="active" value="0" {{ $users->is_active == 0 ? 'checked' : '' }}>

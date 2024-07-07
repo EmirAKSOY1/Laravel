@@ -42,6 +42,7 @@ class Candidate extends Controller
         }
 
         $candidates = $query->paginate(10); // Sayfalama ekleyebilirsiniz
+
         // Aday bulunamadı durumu kontrolü
         if ($candidates->isEmpty()) {
             return view('admin.candidate')->with('message', 'Aday bulunamadı.');
@@ -73,6 +74,8 @@ class Candidate extends Controller
     public function update(Request $request, $id)
     {
         $candidate = CandidateModel::findOrFail($id);
+        $user_rol=UserRol::where('user_id',$candidate->user->id)->first();
+
         $validatedData = $request->validate([
             'name' => 'required|string',
             'surname' => 'required|string',
@@ -94,13 +97,15 @@ class Candidate extends Controller
 
         $candidate->update([
             'birthdate' => $request->input('birthdate'),
-            'organisation_level_id' => $request->input('organisation_level_id'),
             'gender' => $request->input('gender'),
             // Diğer form alanları
         ]);
 
         $candidate->user->update([
                 'is_active' => $request->input('active'),
+        ]);
+        $user_rol->update([
+            'organasation_level_id' =>$request->input('organisation_level_id'),
         ]);
 
 
@@ -138,13 +143,13 @@ class Candidate extends Controller
         $candidate = new CandidateModel();
         $candidate->user_id = $user->id;
         $candidate->birthdate = $request->candidate_birthdate;
-        $candidate->organisation_level_id = $request->organisation_level_id;
         $candidate->gender = $request->gender;
         $candidate->save();
 
         $role = new UserRol();
         $role->user_id = $user->id;
         $role->role_id = 3;
+        $role->organasation_level_id = $request->organisation_level_id;
         $role->save();
 
 

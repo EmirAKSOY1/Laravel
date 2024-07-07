@@ -50,6 +50,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class);
     }
+    public function roleUser()
+    {
+        return $this->hasOne(UserRol::class);
+    }
 
     public function hasRole($roleName)
     {

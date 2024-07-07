@@ -79,6 +79,9 @@
                             <th>Adı</th>
                             <th>Soyadı</th>
                             <th>E-Posta</th>
+                            <th>Kurum</th>
+                            <th>Seviye</th>
+                            <th>İşlemler</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -88,6 +91,8 @@
                                 <td>{{$candidate->user->name}}</td>
                                 <td>{{$candidate->user->surname}}</td>
                                 <td>{{$candidate->user->email}}</td>
+                                <td>{{$candidate->user->roleUser->organisationLevel->organisation->organisation_name }}</td>
+                                <td>{{$candidate->user->roleUser->organisationLevel->level->name }}</td>
 
                                 <td>
                                     <a  class="btn btn-primary" href="{{ route('candidate.edit', $candidate->id) }}">Düzenle</a>

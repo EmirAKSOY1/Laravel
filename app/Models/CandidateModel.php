@@ -11,7 +11,7 @@ class CandidateModel extends Model
     protected $table = 'candidates';
 
     protected $fillable = [
-        'user_id', 'birthdate', 'gender','organisation_level_id'
+        'user_id', 'birthdate', 'gender'
     ];
 
     public function user()
@@ -21,5 +21,9 @@ class CandidateModel extends Model
     public function organisationLevel()
     {
         return $this->belongsTo(OrganisationLevel::class, 'organisation_level_id');
+    }
+    public function roleUser()
+    {
+        return $this->hasOne(UserRol::class);
     }
 }

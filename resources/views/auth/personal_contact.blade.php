@@ -3,7 +3,6 @@
     @section('title',"Aday Düzenle")
     @section('sidebar_permission')
         @include('admin.admin_navbar_content')
-
     @endsection
     @section('icerik')
         <div class="content">

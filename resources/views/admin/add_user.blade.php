@@ -45,6 +45,17 @@
                             <input type="number" class="form-control" id="organisation_name" name="user_tc">
                         </div>
 
+                        <div class="form-group">
+                            <label for="organisation_level_id">Kurum</label>
+                            <select class="form-control" id="organisation_level_id" name="organisation_level_id">
+                                @foreach($organisationLevels as $orgLevel)
+                                    <option value="{{ $orgLevel->id }}">
+                                        {{ $orgLevel->organisation->organisation_name }} - {{ $orgLevel->level->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <br>
                         <div class="mb-3">
                             <label for="password" class="form-label">Şifre</label>
                             <div class="input-group">
