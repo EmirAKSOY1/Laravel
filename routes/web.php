@@ -8,6 +8,7 @@ use App\Http\Controllers\Notices;
 use App\Http\Controllers\User;
 use App\Http\Controllers\Candidate;
 use App\Http\Controllers\Editusercontroller;
+use App\Http\Controllers\Disability;
 Route::get('/',function(){
    return view('index');
 });
@@ -30,10 +31,12 @@ Route::get('/add_notice', [Addnotice::class, 'showNotice'])->name('notice');
 Route::post('/add_notice', [Addnotice::class, 'notice_add']);
 
 Route::resource('notices', Notices::class);
+Route::resource('cognitive', \App\Http\Controllers\Cognitive::class);
 Route::resource('contact',User::class);
 Route::resource('candidate',Candidate::class);
 Route::resource('organisation',Organisation::class);
 Route::resource('add_user',Adduser::class);
+Route::resource('disabilities', Disability::class);
 
 Route::get('/add_organisation', [Organisation::class, 'showOrganisation'])->name('organisation');
 Route::post('/add_organisation', [Organisation::class, 'add']);

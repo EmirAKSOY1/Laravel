@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\CandidateModel;
+use App\Models\DisabilityModel;
 use App\Models\Level;
 use App\Models\User;
 use App\Models\UserRol;
 use App\Models\OrganisationLevel;
 use App\Models\OrganisationModel;
+use App\Models\CandidateDisability;
 use Illuminate\Http\Request;
 
 class Candidate extends Controller
 {
     public function index(Request $request)
     {
-        /*
-        $candidates = CandidateModel::with('user')->get(); // Adayları kullanıcı bilgileriyle birlikte çek
-        return view('admin.candidate', compact('candidates'));*/
+
         $query = CandidateModel::query()->with('user'); // Adayları kullanıcı bilgileriyle birlikte çekmek için
 
         // Filtreleme işlemleri
@@ -45,9 +45,9 @@ class Candidate extends Controller
 
         // Aday bulunamadı durumu kontrolü
         if ($candidates->isEmpty()) {
-            return view('admin.candidate')->with('message', 'Aday bulunamadı.');
+            return view('admin.candidate.candidate')->with('message', 'Aday bulunamadı.');
         }
-        return view('admin.candidate', compact('candidates'));
+        return view('admin.candidate.candidate', compact('candidates',));
     }
     public function destroy($id)
     {
@@ -60,6 +60,7 @@ class Candidate extends Controller
         if ($user) {
             $user->roles()->detach(); // user_role tablosundaki kayıtları siler
             $user->delete();
+            CandidateDisability::where('candidate_id', $candidate->id)->delete();
         }
 
         return redirect()->route('candidate.index')
@@ -69,7 +70,9 @@ class Candidate extends Controller
     {
         $candidates = CandidateModel::with('organisationLevel.organisation')->find($id);
         $organisationLevels = OrganisationLevel::with('organisation', 'level')->get();
-        return view('admin.edit_candidate', compact('candidates','organisationLevels'));
+        $candidateDisabilities = CandidateDisability::where('candidate_id', $id)->pluck('disability_id')->toArray();
+        $disabilities = DisabilityModel::all();
+        return view('admin.candidate.edit_candidate', compact('candidates','organisationLevels','candidateDisabilities','disabilities'));
     }
     public function update(Request $request, $id)
     {
@@ -108,14 +111,24 @@ class Candidate extends Controller
             'organasation_level_id' =>$request->input('organisation_level_id'),
         ]);
 
+        CandidateDisability::where('candidate_id', $candidate->id)->delete();
+        $disabilities = $request->input('disabilities', []);
+        foreach ($disabilities as $option) {
+            $disability = new CandidateDisability();
+            $disability->disability_id=$option;
+            $disability->candidate_id=$candidate->id;
+            $disability->save();
+        }
 
         return redirect()->route('candidate.index')->with('update', 'Aday başarıyla Güncellendi.');
     }
     public function create(){
+        $disabilities = DisabilityModel::all();
         $organisationLevels = OrganisationLevel::with('organisation', 'level')->get();
-        return view('admin.add_candidate',compact('organisationLevels'));
+        return view('admin.candidate.add_candidate',compact('organisationLevels','disabilities'));
     }
     public function store(Request $request){
+
         $request->validate([
             'candidate_name' => 'required|string|max:255',
             'candidate_surname' => 'required|string|max:255',
@@ -151,6 +164,14 @@ class Candidate extends Controller
         $role->role_id = 3;
         $role->organasation_level_id = $request->organisation_level_id;
         $role->save();
+
+        $disabilities = $request->input('disabilities', []);
+        foreach ($disabilities as $option) {
+            $disability = new CandidateDisability();
+            $disability->disability_id=$option;
+            $disability->candidate_id=$candidate->id;
+            $disability->save();
+        }
 
 
 

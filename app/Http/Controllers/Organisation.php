@@ -19,11 +19,11 @@ class Organisation extends Controller
         }
 
         $organisations = $query->get();
-        return view('admin.organisation',compact('organisations'));
+        return view('admin.organisation.organisation',compact('organisations'));
     }
     public function create(){
         $levels = Level::all();
-        return view('admin.add_organisation', compact('levels'));
+        return view('admin.organisation.add_organisation', compact('levels'));
     }
     public function add(Request $request){
         // Veritabanına veri ekleme
@@ -64,7 +64,7 @@ class Organisation extends Controller
 
         }
 
-        return view('admin.edit_organisation', compact('organisation','levelModel','levelll'));
+        return view('admin.organisation.edit_organisation', compact('organisation','levelModel','levelll'));
     }
     public function update(Request $request, $id)
     {

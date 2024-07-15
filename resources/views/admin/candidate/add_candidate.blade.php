@@ -67,6 +67,20 @@
                             <input type="radio" id="gender_female" name="gender" value="1">
                             <label for="gender_female">Kadın</label>
                         </div>
+                        <div class="form-group">
+                            <label>Özel Gereksinimler:</label><br>
+                            @foreach($disabilities as $disability)
+                                <div class="form-check">
+                                    <input class="form-check-input"
+                                           type="checkbox"
+                                           name="disabilities[]"
+                                           value="{{ $disability->id }}"
+                                    >
+                                    <label class="form-check-label">{{ $disability->name }}</label>
+                                </div>
+                            @endforeach
+                        </div>
+                        <br>
                         <div class="mb-3">
                             <label>Durum:</label><br>
                             <input type="radio" id="active_inactive" name="active" value="0" required>

@@ -30,9 +30,11 @@
 <body>
 <!-- navbar -->
 <nav class="navbar">
-    <div class="logo_item" style="cursor: pointer" onclick="goToDashboard()">
+    <div class="logo_item">
         <i class="bx bx-menu" id="sidebarOpen"></i>
-        <img src="{{asset('tubitak.png')}}" alt=""></i>Universal Test System
+        <div style="cursor:pointer" onclick="goToDashboard()">
+            <img src="{{asset('tubitak.png')}}" alt=""></i>Universal Test System
+        </div>
     </div>
 </nav>
 <!-- sidebar -->

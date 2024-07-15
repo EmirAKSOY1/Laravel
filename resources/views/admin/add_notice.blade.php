@@ -6,8 +6,6 @@
     @endsection
     @section('icerik')
         <div class="content">
-
-
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     @if (session('success'))
