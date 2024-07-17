@@ -35,7 +35,7 @@
         </a>
     </li>
     <li class="item">
-        <a href="#" class="nav_link">
+        <a href="{{ route('branches.index') }}" class="nav_link">
               <span class="navlink_icon">
                 <i class="bx bx-spreadsheet"></i>
               </span>

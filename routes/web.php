@@ -9,6 +9,9 @@ use App\Http\Controllers\User;
 use App\Http\Controllers\Candidate;
 use App\Http\Controllers\Editusercontroller;
 use App\Http\Controllers\Disability;
+use App\Http\Controllers\BranchController;
+use App\Http\Controllers\SubBranch;
+use App\Http\Controllers\LearningOutcome;
 Route::get('/',function(){
    return view('index');
 });
@@ -37,6 +40,12 @@ Route::resource('candidate',Candidate::class);
 Route::resource('organisation',Organisation::class);
 Route::resource('add_user',Adduser::class);
 Route::resource('disabilities', Disability::class);
+Route::resource('branches', BranchController::class);
+Route::resource('subbranch', SubBranch::class);
+Route::get('subbranch/create/{id}', [SubBranch::class, 'create'])->name('subbranch.create');
+Route::resource('learningoutcome', LearningOutcome::class);
+
+
 
 Route::get('/add_organisation', [Organisation::class, 'showOrganisation'])->name('organisation');
 Route::post('/add_organisation', [Organisation::class, 'add']);

@@ -78,8 +78,9 @@
         if (alertElement) {
             alertElement.classList.remove('show');
             alertElement.classList.add('fade');
+            window.location.reload()
         }
-    }, 2000); // 3000 milisaniye = 3 saniye
+    }, 2000);
     const body = document.querySelector("body");
     const darkLight = document.querySelector("#darkLight");
     const sidebar = document.querySelector(".sidebar");
