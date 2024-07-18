@@ -10,22 +10,21 @@
                 <div class="col-md-6">
                     @if (session('success'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert" id="successAlert">
-                            Alt Alan Başarıyla Kaydedildi!
+                            Kazanım Başarıyla Kaydedildi!
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
 
-                    <h2 style="color:#4070f4">{{ $branch->branch_name }} İçin Alt-Alan Ekle</h2>
-                    <form action="{{ route('subbranch.store') }}" method="POST" enctype="multipart/form-data">
+                    <h2 style="color:#4070f4">Kazanım Düzenle</h2>
+                    <form action="{{ route('learningoutcome.update', $learnOutcome->learning_outcomes_id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="mb-3">
-                            <label for="input1" class="form-label">Alt-Alan Adı</label>
-                            <input type="text" class="form-control" id="organisation_name" name="sub_branch_name">
+                            <label for="input1" class="form-label">Kazanım Adı</label>
+                            <input type="text" class="form-control" id="organisation_name" name="learning_outcomes_name" value="{{$learnOutcome->learning_outcomes_name}}">
                         </div>
-                        <input type="hidden" name="branch_id" value="{{ $branch->branch_id }}">
-
                         <br>
-                        <button type="submit" class="btn btn-primary">Alt-Alan Ekle</button>
+                        <button type="submit" class="btn btn-primary">Kazanım Güncelle</button>
                     </form>
                 </div>
             </div>

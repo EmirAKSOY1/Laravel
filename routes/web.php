@@ -41,9 +41,13 @@ Route::resource('organisation',Organisation::class);
 Route::resource('add_user',Adduser::class);
 Route::resource('disabilities', Disability::class);
 Route::resource('branches', BranchController::class);
+
 Route::resource('subbranch', SubBranch::class);
 Route::get('subbranch/create/{id}', [SubBranch::class, 'create'])->name('subbranch.create');
+
 Route::resource('learningoutcome', LearningOutcome::class);
+Route::get('learningoutcome/create/{id}', [LearningOutcome::class, 'create'])->name('learningoutcome.create');
+
 
 
 

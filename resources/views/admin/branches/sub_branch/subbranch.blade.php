@@ -58,7 +58,7 @@
                                 <tr>
                                     <td>{{ $subBranch->sub_branch_id }}</td>
                                     <td>{{ $subBranch->sub_branch_name }}</td>
-                                    <td>12</td>
+                                    <td>{{ $subBranch->learningOutcomes->count() }}</td>
                                     <td>
                                         <a href="{{ route('subbranch.edit',  $subBranch->sub_branch_id) }}" class="btn btn-primary">Düzenle</a>
                                         <form action="{{ route('subbranch.destroy', $subBranch->sub_branch_id) }}" method="POST" style="display:inline-block;">

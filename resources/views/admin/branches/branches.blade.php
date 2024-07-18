@@ -48,7 +48,7 @@
                                 <th>Alan Adı</th>
                                 <th>Sınıf Seviyesi</th>
                                 <th>Alt Alan Sayısı</th>
-                                <th>Kazanım Sayısı</th>
+
                                 <th style="text-align: center">İşlemler</th>
 
                             </tr>
@@ -60,7 +60,7 @@
                                     <td>{{ $branch->classLevel->class_type }} {{ $branch->classLevel->class_level_name }}</td>
 
                                     <td>{{ $branch->subBranches->count() }}</td>
-                                    <td>34</td>
+
                                     <td>
                                         <a href="{{ route('branches.edit', $branch->branch_id) }}" class="btn btn-primary">Düzenle</a>
                                         <form action="{{ route('branches.destroy', $branch->branch_id) }}" method="POST" style="display:inline-block;">

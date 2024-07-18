@@ -36,7 +36,7 @@
                     @endif
                     <h2>{{ $sub_branch->sub_branch_name }} Alt Alanı Kazanımları</h2>
                     <hr>
-                    <a  href="" type="button" class="btn btn-success">Yeni Kazanım Ekle</a>
+                    <a  href="{{ route('learningoutcome.create', $sub_branch->sub_branch_id) }}" type="button" class="btn btn-success">Yeni Kazanım Ekle</a>
 
 
                     @if($sub_branch->learningOutcomes->isEmpty())
@@ -58,8 +58,8 @@
                                     <td>{{ $outcome->learning_outcomes_id }}</td>
                                     <td>{{ $outcome->learning_outcomes_name }}</td>
                                     <td>
-                                        <a href="" class="btn btn-primary">Düzenle</a>
-                                        <form action="" method="POST" style="display:inline-block;">
+                                        <a href="{{ route('learningoutcome.edit',  $outcome->learning_outcomes_id) }}" class="btn btn-primary">Düzenle</a>
+                                        <form action="{{ route('learningoutcome.destroy', $outcome->learning_outcomes_id) }}" method="POST" style="display:inline-block;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Sil</button>
