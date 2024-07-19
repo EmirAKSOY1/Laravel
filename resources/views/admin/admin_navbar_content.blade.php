@@ -1,5 +1,7 @@
 <ul class="menu_items">
-    <div class="menu_title menu_dahsboard"></div>
+    <li>
+        <a href="{{ route('tests.index') }}" style="color:#707070;" class="menu_title menu_dashboard">Test İşlemleri</a>
+    </li>
 </ul>
 <ul class="menu_items">
     <div class="menu_title menu_editor"></div>

@@ -20,4 +20,8 @@ class SubBranchModel extends Model
     {
         return $this->hasMany(LearningOutcomeModel::class,'sub_branch_id');
     }
+    public function tests()
+    {
+        return $this->belongsToMany(Test::class, 'test_sub_branches', 'sub_branch_id', 'test_id');
+    }
 }

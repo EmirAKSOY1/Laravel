@@ -12,6 +12,7 @@ use App\Http\Controllers\Disability;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\SubBranch;
 use App\Http\Controllers\LearningOutcome;
+use App\Http\Controllers\TestController;
 Route::get('/',function(){
    return view('index');
 });
@@ -41,6 +42,8 @@ Route::resource('organisation',Organisation::class);
 Route::resource('add_user',Adduser::class);
 Route::resource('disabilities', Disability::class);
 Route::resource('branches', BranchController::class);
+Route::resource('tests', TestController::class);
+Route::resource('terms', \App\Http\Controllers\TermController::class);
 
 Route::resource('subbranch', SubBranch::class);
 Route::get('subbranch/create/{id}', [SubBranch::class, 'create'])->name('subbranch.create');
