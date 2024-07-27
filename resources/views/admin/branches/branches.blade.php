@@ -37,7 +37,7 @@
                     @endif
                     <h1>Alanlar</h1>
                     <hr>
-                                        <br>
+                    <br>
                     <button type="button" class="btn btn-success"  onclick="window.location='{{ route('branches.create') }}'">Yeni Alan Ekle</button>
                     @if(isset($message))
                         <p>{{ $message }}</p>
@@ -48,9 +48,7 @@
                                 <th>Alan Adı</th>
                                 <th>Sınıf Seviyesi</th>
                                 <th>Alt Alan Sayısı</th>
-
                                 <th style="text-align: center">İşlemler</th>
-
                             </tr>
                             </thead>
                             <tbody>
@@ -58,9 +56,7 @@
                                 <tr>
                                     <td>{{ $branch->branch_name }}</td>
                                     <td>{{ $branch->classLevel->class_type }} {{ $branch->classLevel->class_level_name }}</td>
-
                                     <td>{{ $branch->subBranches->count() }}</td>
-
                                     <td>
                                         <a href="{{ route('branches.edit', $branch->branch_id) }}" class="btn btn-primary">Düzenle</a>
                                         <form action="{{ route('branches.destroy', $branch->branch_id) }}" method="POST" style="display:inline-block;">

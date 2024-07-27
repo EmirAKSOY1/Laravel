@@ -66,10 +66,9 @@
                         </div>
                     @endif
 
-                    <h2 style="color:#4070f4">Test Güncelle</h2>
-                    <form action="{{ route('tests.update', $tests->test_id) }}" method="POST" enctype="multipart/form-data" id="addForm">
+                    <h2 style="color:#4070f4"><u>{{$tests->test_id}}</u> Numaralı Testi Çoğalt</h2>
+                    <form action="{{ route('tests.store') }}" method="POST" enctype="multipart/form-data" id="addForm">
                         @csrf
-                        @method('PUT')
                         <div class="mb-3">
                             <label for="input1" class="form-label">Test Adı</label>
                             <input type="text" class="form-control" id="organisation_name" name="test_name" value="{{$tests->test_name}}">
@@ -111,7 +110,7 @@
                             <label for="active_active">Aktif</label>
                         </div>
                         <br>
-                        <button type="submit" class="btn btn-primary">Test Ekle</button>
+                        <button type="submit" class="btn btn-primary">Testi Çoğalt</button>
                     </form>
                 </div>
             </div>

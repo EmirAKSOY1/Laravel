@@ -1,10 +1,61 @@
 @auth
     @extends('layouts.navbar')
     @section('title',"Test Ekle")
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <head>
+        <style>
+            .select2-container {
+                width: 300px !important; /* !important ekleyerek varsayılan genişliği geçersiz kılar */
+            }
+
+            .select2-selection {
+                width: 100% !important; /* İçerik alanının genişliğinin %100 olması */
+            }
+
+            .select2-search__field {
+                width: 100% !important; /* Arama alanının genişliğinin %100 olması */
+            }
+            /* Select2 elementlerinin stilini iyileştirmek için ek stil */
+            .select2-container--default .select2-selection--multiple {
+                background-color: #f7f7f7;
+                border: 1px solid #ced4da;
+                border-radius: 4px;
+                padding: 0.375rem 0.75rem;
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+            .select2-container--default .select2-selection--multiple .select2-selection__choice {
+                background-color: #007bff;
+                border: 1px solid #007bff;
+                border-radius: 2px;
+                padding: 0 0.5rem;
+                color: #fff;
+                margin-top: 0.375rem;
+
+
+            }
+            .select2-container--focus{
+                width: 300px;
+            }
+            .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+                color: #fff;
+                margin-right: 0.5rem;
+                cursor: pointer;
+            }
+            .custom-textarea {
+                width: 300px; /* Genişliği tam olarak form elemanının genişliğine ayarlar */
+                height: 150px; /* Yüksekliği ayarlar */
+                resize: vertical; /* Yalnızca dikey olarak yeniden boyutlandırmaya izin verir */
+                padding: 0.5rem; /* İç boşluk ekler */
+                font-size: 1rem; /* Yazı tipi boyutunu ayarlar */
+            }
+        </style>
+    </head>
     @section('sidebar_permission')
         @include('admin.admin_navbar_content')
     @endsection
     @section('icerik')
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <div class="content">
             <div class="row justify-content-center">
                 <div class="col-md-6">
@@ -43,14 +94,12 @@
                             </select>
 
                         </div><br>
-                        <div class="form-group">
-                            <label for="term_id">Alt Alan:</label>
-                            <select name="test_sub_branch" id="term_id" class="form-control" required>
-                                @foreach ($subbranchs as $subbranch)
-                                    <option value="{{ $subbranch->sub_branch_id }}">{{ $subbranch->sub_branch_name }}</option>
-                                @endforeach
-                            </select>
-                        </div><br>
+                        <div >
+                            <label for="tags">Tags:</label>
+                                <select name="tags[]" id="tags" multiple="multiple">
+                                </select>
+                        </div>
+                        <br>
                         <div class="mb-3">
                             <label>Durum:</label><br>
                             <input type="radio" id="active_inactive" name="active" value="0" required>
@@ -99,7 +148,6 @@
                         method: 'POST',
                         data: $(this).serialize(),
                         success: function(response) {
-
                             if(response.success) {
                                 $('#addTermModal').modal('hide');
                                 $('#term_id').append('<option value="' + response.term.term_id + '">' + response.term.term_year + '-' + response.term.term_name + '</option>');
@@ -113,8 +161,37 @@
                         }
                     });
                 });
+
+                $('#tags').select2({
+                    placeholder: 'Select or search tags',
+                    ajax: {
+                        url: '{{ route('tests.search') }}',
+                        type: 'POST',
+                        dataType: 'json',
+                        delay: 250,
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        data: function(params) {
+                            return {
+                                q: params.term
+                            };
+                        },
+                        processResults: function(data) {
+                            console.log(data);
+                            return {
+                                results: data
+                            };
+                        },
+                        cache: true
+                    },
+                    minimumInputLength: 1,
+                    tags: true
+                });
             });
         </script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     @endsection
 @else
     <script>

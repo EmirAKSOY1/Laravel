@@ -2,6 +2,7 @@
 @auth
     @extends('layouts.navbar')
     @section('title',"Alanlar")
+
     @section('username',auth()->user()->username)
     @section('role',auth()->user()->roles->first()->name)
     @section('sidebar_permission')
@@ -20,6 +21,19 @@
             }
             .inactive {
                 background-color: red;
+            }
+            .sub-branch-container {
+                max-width: 200px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .more-info {
+                display: inline-block;
+                cursor: pointer;
+                color: blue;
+                font-weight: bold;
             }
         </style>
         <div class="content">
@@ -79,9 +93,14 @@
                                     <td>{{ $test->term->term_name }}</td>
                                     <td><span class="status-indicator {{ $test->active ? 'active' : 'inactive' }}"></span></td>
                                     <td>
-                                        @foreach ($test->subBranches as $subBranch)
-                                            {{ $subBranch->sub_branch_name }}<br>
-                                        @endforeach
+                                        <div class="sub-branch-container" data-content="{{ $test->subBranches->pluck('sub_branch_name')->join(', ') }}">
+                                            @if ($test->subBranches->count() > 1)
+                                                {{ $test->subBranches->first()->sub_branch_name }}<br>
+                                                <span class="more-info" title="{{ $test->subBranches->pluck('sub_branch_name')->join(', ') }}">...</span>
+                                            @else
+                                                {{ $test->subBranches->first()->sub_branch_name }}<br>
+                                            @endif
+                                        </div>
                                     </td>
                                     <td>
                                         @foreach ($test->subBranches as $subBranch)
@@ -90,13 +109,25 @@
                                         @endforeach
                                     </td>
                                     <td>
-                                        <a  href="{{ route('subbranch.show', $test->test_id) }}" type="button" class="btn btn-secondary"><i class='bx bx-search' ></i></a>
+                                        <button class="btn btn-warning dropdown-toggle" type="button" id="settingsMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class='fas fa-cog' ></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="settingsMenuButton">
+                                            <a class="dropdown-item" href="/settings/general">Maddeler</a>
+                                            <a class="dropdown-item" href="/settings/profile">Uygulama Ayarları</a>
+                                            <a class="dropdown-item" href="/settings/security">BOBUT Ayarları</a>
+                                            <a class="dropdown-item" href="/settings/notifications">Geribildirim ayarları</a>
+                                            <a class="dropdown-item" href="/settings/privacy">Karşılama ekranı ayarları</a>
+                                            <a class="dropdown-item" href="/settings/privacy">Raporlar/Grafikler</a>
+                                        </div>
+
                                         <a href="{{ route('tests.edit', $test->test_id) }}" class="btn btn-primary">Düzenle</a>
                                         <form action="{{ route('tests.destroy',$test->test_id) }}" method="POST" style="display:inline-block;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Sil</button>
                                         </form>
+                                        <a  href="{{ route('tests.duplicate', $test->test_id) }}" type="button" class="btn btn-secondary"><i class='bx bx-copy' ></i></a>
                                     </td>
                                 </tr>
 
@@ -108,6 +139,8 @@
                 </div>
             </div>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     @endsection
 @else
     <script>

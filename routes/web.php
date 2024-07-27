@@ -43,6 +43,9 @@ Route::resource('add_user',Adduser::class);
 Route::resource('disabilities', Disability::class);
 Route::resource('branches', BranchController::class);
 Route::resource('tests', TestController::class);
+Route::get('tests/{test}/duplicate', [TestController::class, 'duplicate'])->name('tests.duplicate');
+Route::post('tests/search', [TestController::class, 'searchBranch'])->name('tests.search');
+
 Route::resource('terms', \App\Http\Controllers\TermController::class);
 
 Route::resource('subbranch', SubBranch::class);

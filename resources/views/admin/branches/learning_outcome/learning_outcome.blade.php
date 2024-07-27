@@ -37,7 +37,8 @@
                     <h2>{{ $sub_branch->sub_branch_name }} Alt Alanı Kazanımları</h2>
                     <hr>
                     <a  href="{{ route('learningoutcome.create', $sub_branch->sub_branch_id) }}" type="button" class="btn btn-success">Yeni Kazanım Ekle</a>
-
+                    <a  href="{{ route('branches.index')}}" type="button" class="btn btn-primary">Alanlara Git</a>
+                    <a  href="{{ route('subbranch.show',$sub_branch->branch->branch_id) }}" type="button" class="btn btn-warning">Alt Alanlara Git</a>
 
                     @if($sub_branch->learningOutcomes->isEmpty())
                         <br>

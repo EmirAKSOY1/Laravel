@@ -33,7 +33,7 @@
               <span class="navlink_icon">
                 <i class="bx bx-medal"></i>
               </span>
-            <span class="navlink">Bilişsel Düzey Ekle</span>
+            <span class="navlink">Bilişsel Düzey</span>
         </a>
     </li>
     <li class="item">
@@ -41,7 +41,7 @@
               <span class="navlink_icon">
                 <i class="bx bx-spreadsheet"></i>
               </span>
-            <span class="navlink">Alan-Kazanım Ekle</span>
+            <span class="navlink">Alan-Kazanım</span>
         </a>
     </li>
     <li class="item">

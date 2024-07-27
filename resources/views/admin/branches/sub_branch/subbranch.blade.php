@@ -37,6 +37,7 @@
                     <h2>{{ $branch->branch_name }} için Alt-Alan</h2>
                     <hr>
                         <a  href="{{ route('subbranch.create', $branch->branch_id) }}" type="button" class="btn btn-success">Yeni Alt-Alan Ekle</a>
+                        <a  href="{{ route('branches.index')}}" type="button" class="btn btn-primary">Alanlara Git</a>
 
 
                     @if($branch->subBranches->isEmpty())

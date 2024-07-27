@@ -11,4 +11,5 @@ class User extends Controller
         $user = Auth::user();
         return view('auth.personal_contact',compact('user'));
     }
+
 }
