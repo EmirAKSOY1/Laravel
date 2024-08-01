@@ -97,7 +97,7 @@
 
                         </div><br>
                         <div class="form-group">
-                            <label for="tags">Etiketler:</label>
+                            <label for="tags">Alt-Alan:</label>
                             <select name="tags[]" id="tags" multiple="multiple">
 
                             </select>

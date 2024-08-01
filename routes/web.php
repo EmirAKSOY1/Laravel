@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Organisation;
@@ -35,6 +37,14 @@ Route::get('/add_notice', [Addnotice::class, 'showNotice'])->name('notice');
 Route::post('/add_notice', [Addnotice::class, 'notice_add']);
 
 Route::resource('notices', Notices::class);
+
+Route::resource('question', QuestionController::class);
+Route::get('question/create/{id}', [QuestionController::class, 'create'])->name('question.create');
+Route::get('/get-branches', [QuestionController::class, 'getBranches'])->name('get-branches');
+Route::get('/get-sub-branches', [QuestionController::class, 'getSubBranches'])->name('get-sub-branches');
+Route::get('/learning-outcomes', [QuestionController::class, 'getLearningOutcomes'])->name('learning-outcomes');
+Route::get('question/detail/{id}', [QuestionController::class, 'detail'])->name('question.detail');
+
 Route::resource('cognitive', \App\Http\Controllers\Cognitive::class);
 Route::resource('contact',User::class);
 Route::resource('candidate',Candidate::class);

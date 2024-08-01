@@ -16,4 +16,8 @@ class LearningOutcomeModel extends Model
     {
         return $this->belongsTo(SubBranchModel::class, 'sub_branch_id');
     }
+    public function getQuestion()
+    {
+        return $this->hasMany(QuestionModel::class,'learning_outcomes_id');
+    }
 }

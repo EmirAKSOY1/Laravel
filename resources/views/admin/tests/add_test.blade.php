@@ -95,7 +95,7 @@
 
                         </div><br>
                         <div >
-                            <label for="tags">Tags:</label>
+                            <label for="tags">AlT-Alan:</label>
                                 <select name="tags[]" id="tags" multiple="multiple">
                                 </select>
                         </div>

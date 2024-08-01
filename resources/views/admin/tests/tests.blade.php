@@ -63,7 +63,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
-                    <h1>Testler</h1>
+                    <h2 style="color:#4070f4">Testler</h2>
                     <hr>
                     <br>
                     <button type="button" class="btn btn-success"  onclick="window.location='{{ route('tests.create') }}'">Yeni Test Ekle</button>
@@ -113,7 +113,7 @@
                                             <i class='fas fa-cog' ></i>
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="settingsMenuButton">
-                                            <a class="dropdown-item" href="/settings/general">Maddeler</a>
+                                            <a class="dropdown-item" href="{{ route('question.show',$test->test_id)}}">Maddeler</a>
                                             <a class="dropdown-item" href="/settings/profile">Uygulama Ayarları</a>
                                             <a class="dropdown-item" href="/settings/security">BOBUT Ayarları</a>
                                             <a class="dropdown-item" href="/settings/notifications">Geribildirim ayarları</a>

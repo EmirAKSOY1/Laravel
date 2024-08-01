@@ -172,9 +172,6 @@ class Candidate extends Controller
             $disability->candidate_id=$candidate->id;
             $disability->save();
         }
-
-
-
         return redirect()->route('candidate.index')->with('add', 'Aday Başarıyla Eklendi.');
     }
 }
